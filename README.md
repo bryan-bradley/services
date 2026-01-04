@@ -9,6 +9,7 @@ _Second-opinion guidance for technology leaders navigating high-risk decisions_
 I offer a limited amount of **paid advisory and mentoring work** for IT leaders.
 
 This is **not** consulting, staff augmentation, or fractional executive work.  
+
 My role is to provide **candid second opinions**, **decision support**, and **leadership guidance** — without operational responsibility.
 
 ---
