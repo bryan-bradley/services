@@ -1,170 +1,256 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Senior IT Advisory & Mentoring</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Senior IT Advisory & Mentoring</title>
 
-    <style>
-        :root {
-            --text: #1f2933;
-            --muted: #52606d;
-            --border: #d9e2ec;
-            --accent: #334e68;
-            --bg: #ffffff;
-            --panel: #f8fafc;
-        }
+  <style>
+    :root {
+      --text: #1f2933;
+      --muted: #52606d;
+      --border: #d9e2ec;
+      --accent: #334e68;
+      --bg: #ffffff;
+      --panel: #f8fafc;
+    }
 
-        body {
-            margin: 0;
-            background: var(--panel);
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-            color: var(--text);
-            line-height: 1.65;
-        }
+    body {
+      margin: 0;
+      background: var(--panel);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      line-height: 1.65;
+    }
 
-        .container {
-            max-width: 880px;
-            margin: 60px auto;
-            padding: 0 24px;
-        }
+    .container {
+      max-width: 920px;
+      margin: 48px auto;
+      padding: 0 24px;
+    }
 
-        .card {
-            background: var(--bg);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 48px 56px;
-        }
+    .card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      position: relative; /* needed for absolute avatar positioning */
+    }
 
-        h1 {
-            margin: 0;
-            font-size: 2.1rem;
-            font-weight: 600;
-            letter-spacing: -0.02em;
-        }
+    /* --- Banner --- */
+    .banner {
+      width: 100%;
+      height: 240px;
+      background-image: url("banner.jpg");
+      background-size: cover;
+      background-position: center;
+    }
 
-        .subtitle {
-            margin-top: 8px;
-            font-size: 1.05rem;
-            color: var(--muted);
-        }
+    /* --- LinkedIn-style avatar (overlapping banner + content) --- */
+    .avatar {
+      position: absolute;
+      left: 48px;
+      top: 240px;              /* aligns with banner height */
+      transform: translateY(-50%); /* overlap: half above / half below */
+      width: 152px;
+      height: 152px;
+      border-radius: 50%;
+      background-image: url("headshot.jpg");
+      background-size: cover;
+      background-position: center;
 
-        h2 {
-            margin-top: 48px;
-            margin-bottom: 12px;
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: var(--accent);
-        }
+      /* LinkedIn-like ring + subtle depth */
+      border: 6px solid #ffffff;                 /* thick white ring */
+      box-shadow:
+        0 0 0 1px rgba(0,0,0,0.10),              /* subtle outer edge */
+        0 10px 24px rgba(15, 23, 42, 0.18);      /* soft drop shadow */
+    }
 
-        p {
-            margin: 12px 0;
-        }
+    /* --- Header content area (white panel under banner) --- */
+    .header {
+      padding: 44px 56px 8px 56px;
+      /* Make room so title doesn't start under the avatar */
+      padding-left: 48px;
+      min-height: 120px;
+    }
 
-        ul {
-            margin: 12px 0 0 0;
-            padding-left: 20px;
-        }
+    .identity {
+      margin-left: 176px; /* avatar width (152) + gap (~24) */
+    }
 
-        li {
-            margin: 8px 0;
-        }
+    h1 {
+      margin: 0;
+      font-size: 2rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
 
-        hr {
-            border: none;
-            border-top: 1px solid var(--border);
-            margin: 40px 0;
-        }
+    .subtitle {
+      margin-top: 6px;
+      font-size: 1.05rem;
+      color: var(--muted);
+    }
 
-        .emphasis {
-            font-weight: 500;
-        }
+    .content {
+      padding: 20px 56px 48px 56px;
+    }
 
-        .footer {
-            margin-top: 56px;
-            font-size: 0.95rem;
-            color: var(--muted);
-        }
-    </style>
+    h2 {
+      margin-top: 48px;
+      margin-bottom: 12px;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    p { margin: 12px 0; }
+
+    ul {
+      margin: 12px 0 0 0;
+      padding-left: 20px;
+    }
+
+    li { margin: 8px 0; }
+
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 40px 0;
+    }
+
+    .emphasis { font-weight: 500; }
+
+    .footer {
+      margin-top: 56px;
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    /* --- Mobile adjustments --- */
+    @media (max-width: 720px) {
+      .banner { height: 200px; }
+
+      .avatar {
+        left: 24px;
+        top: 200px; /* match banner height */
+        width: 132px;
+        height: 132px;
+      }
+
+      .header {
+        padding: 44px 28px 8px 28px;
+      }
+
+      .identity {
+        margin-left: 156px; /* avatar width (132) + gap (~24) */
+      }
+
+      .content {
+        padding: 16px 28px 40px 28px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .banner { height: 180px; }
+
+      .avatar {
+        left: 20px;
+        top: 180px;
+        width: 120px;
+        height: 120px;
+      }
+
+      .identity {
+        margin-left: 144px;
+      }
+
+      h1 { font-size: 1.65rem; }
+      .subtitle { font-size: 1rem; }
+    }
+  </style>
 </head>
 
 <body>
-    <div class="container">
-        <div class="card">
+  <div class="container">
+    <div class="card">
 
-            <h1>Senior IT Advisory & Mentoring</h1>
-            <p class="subtitle">
-                Second-opinion guidance for technology leaders navigating high-risk decisions
-            </p>
+      <div class="banner"></div>
+      <div class="avatar" aria-label="Headshot"></div>
 
-            <h2>What this is</h2>
-            <p>
-                I offer a limited amount of <span class="emphasis">paid advisory and mentoring </span> for IT leaders.
-            </p>
-            <p>
-                This is not consulting, staff augmentation, or fractional executive work.
-                My role is to provide <span class="emphasis">candid second opinions</span>,
-                <span class="emphasis">decision support</span>, and
-                <span class="emphasis">leadership guidance</span> - without operational responsibility.
-            </p>
-
-            <hr>
-
-            <h2>Who this is for</h2>
-            <ul>
-                <li>CIOs, CTOs, and senior IT leaders</li>
-                <li>Founders or executives facing technology decisions with real risk</li>
-                <li>Leaders who want an experienced second set of eyes before committing</li>
-                <li>Technical managers stepping into executive-facing roles</li>
-            </ul>
-
-            <hr>
-
-            <h2>What I help with</h2>
-            <ul>
-                <li>“Are we about to make a mistake?” decisions</li>
-                <li>Vendor selection and contract sanity checks</li>
-                <li>Build vs buy tradeoffs</li>
-                <li>Cloud vs on-prem realities</li>
-                <li>Legacy modernization planning</li>
-                <li>Untangling fragile or high-risk systems</li>
-                <li>Executive communication and leadership judgment</li>
-            </ul>
-
-            <hr>
-
-            <h2>What I do not do</h2>
-            <ul>
-                <li>Operational or delivery responsibility</li>
-                <li>Staff or project management</li>
-                <li>On-call or urgent support</li>
-                <li>Hands-on implementation or coding</li>
-                <li>Fractional or interim CIO roles</li>
-            </ul>
-
-            <hr>
-
-            <h2>How engagements work</h2>
-            <ul>
-                <li>One-off advisory sessions (60 or 90 minutes)</li>
-                <li>Monthly mentoring (one call per month)</li>
-                <li>Clear decision or topic focus</li>
-                <li>Payment arranged in advance</li>
-            </ul>
-
-            <p class="footer">
-                Availability is intentionally limited.
-            </p>
-
-            <hr>
-
-            <h2>Next step</h2>
-            <p>
-                If this sounds like a fit, you can reach out via LinkedIn message or email
-                with a brief description of the situation or decision you’re facing.
-            </p>
-
+      <div class="header">
+        <div class="identity">
+          <h1>Senior IT Advisory &amp; Mentoring</h1>
+          <p class="subtitle">Second-opinion guidance for technology leaders navigating high-risk decisions</p>
         </div>
+      </div>
+
+      <div class="content">
+
+        <h2>What this is</h2>
+        <p>I offer a limited amount of <span class="emphasis">paid advisory and mentoring</span> for IT leaders.</p>
+        <p>
+          This is not consulting, staff augmentation, or fractional executive work.
+          My role is to provide <span class="emphasis">candid second opinions</span>,
+          <span class="emphasis">decision support</span>, and
+          <span class="emphasis">leadership guidance</span> without operational responsibility.
+        </p>
+
+        <hr>
+
+        <h2>Who this is for</h2>
+        <ul>
+          <li>CIOs, CTOs, and senior IT leaders</li>
+          <li>Founders or executives facing technology decisions with real risk</li>
+          <li>Leaders who want an experienced second set of eyes before committing</li>
+          <li>Technical managers stepping into executive-facing roles</li>
+        </ul>
+
+        <hr>
+
+        <h2>What I help with</h2>
+        <ul>
+          <li>“Are we about to make a mistake?” decisions</li>
+          <li>Vendor selection and contract sanity checks</li>
+          <li>Build vs buy tradeoffs</li>
+          <li>Cloud vs on-prem realities</li>
+          <li>Legacy modernization planning</li>
+          <li>Untangling fragile or high-risk systems</li>
+          <li>Executive communication and leadership judgment</li>
+        </ul>
+
+        <hr>
+
+        <h2>What I do not do</h2>
+        <ul>
+          <li>Operational or delivery responsibility</li>
+          <li>Staff or project management</li>
+          <li>On-call or urgent support</li>
+          <li>Hands-on implementation or coding</li>
+          <li>Fractional or interim CIO roles</li>
+        </ul>
+
+        <hr>
+
+        <h2>How engagements work</h2>
+        <ul>
+          <li>One-off advisory sessions (60 or 90 minutes)</li>
+          <li>Monthly mentoring (one call per month)</li>
+          <li>Clear decision or topic focus</li>
+          <li>Payment arranged in advance</li>
+        </ul>
+
+        <p class="footer">Availability is intentionally limited.</p>
+
+        <hr>
+
+        <h2>Next step</h2>
+        <p>
+          If this sounds like a fit, you can reach out via LinkedIn message or email
+          with a brief description of the situation or decision you’re facing.
+        </p>
+
+      </div>
     </div>
+  </div>
 </body>
 </html>
